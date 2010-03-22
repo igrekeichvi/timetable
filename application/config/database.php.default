@@ -1,0 +1,16 @@
+<?php
+$database['path_to_adodb_absolute'] = '';
+
+$database['db_prefix'] = '';
+$database['db_type'] = 'mysql';
+$database['db_host'] = '';
+$database['db_username'] = '';
+$database['db_password'] = '';
+$database['db_database'] = '';
+$database['db_default_charset'] = 'utf8';
+$database['db_collaction_connection'] = 'utf8_unicode_ci';
+$database['db_global_debug'] = false;
+$database['db_report_errors'] = true;
+$database['db_log_errors'] = false;
+$database['db_file_to_log_errors'] = '';
+?>

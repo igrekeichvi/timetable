@@ -1,0 +1,20 @@
+<?php
+/** Request */
+$config['router_action_parameter'] = 'c';
+
+/** Smarty  */
+$config['path_to_smarty_absolute'] = '';
+// templates config
+$config['compiled_templates_dir'] = '';
+$config['allow_php_code_in_templates'] = false;
+$config['default_template_extension'] = '.tpl';
+$config['template_compile_check'] = true;
+$config['force_compile'] = true;
+
+/** Locales */
+$config['default_lang'] = 'bg';
+$config['languages'] = array('bg', 'en', 'ru');
+
+/** URLs */
+$config['base_url'] = '';
+?>
