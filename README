@@ -1,0 +1,16 @@
+cd ./application/config
+
+mv config.php.default config.php
+mv database.php.default database.php
+
+config.php:
+
+1. Enter the absolute path to Smarty library (e.g. /usr/etc/lib/Smarty) under 'path_to_smarty_absolute' key.
+2. Create a read-write access directory somewhere in the file system, e.g. mkdir /var/runtime/smarty_compile; chmod 777 /var/runtime/smarty_compile. Then enter the path to this under 'compiled_templates_dir'.
+
+database.php
+
+1. Enter the absolute path to Adodb library under 'path_to_adodb_absolute' key.
+2. Configure database settings. (Optionally, switch 'db_global_debug' to true [development only]).
+
+Note: Both Smarty and Adodb are available in ./vendor/libraries/ starting form the root of the project.  
