@@ -1,0 +1,76 @@
+body, table, input {
+	font-family:"Lucida Grande","Lucida Sans Unicode",Verdana,Helvetica,Arial,sans-serif;
+	font-size: 12px;
+}
+
+body {
+	background-color:#F5F6F7;
+	line-height:1.3em;
+}
+
+h1 {
+	font-size: 1.6em;
+	padding: 1em 1.5em;
+}
+
+h2 {
+	font-size: 1.4em;
+}
+
+ul.list li {
+	display: inline;
+}
+
+ul,#menu, h1#header {
+	background-color: #222;
+	color: #fff;
+}
+
+ul#menu {
+	padding: 1em 2em;
+}
+
+ul#menu li a {
+	padding: .8em .5em;
+}
+
+ul#menu li a {
+	color: #fff;
+}
+
+ul#menu li a:hover {
+	background: #fff;
+	color: #0066CC;
+	text-decoration: none;
+}
+
+#contents {
+	padding-left: 2.5em;
+	width: 75em;
+}
+
+#contents h2 {
+	padding: 1em 0 .5em 0;
+}
+
+form, table {
+	margin: 1em 0;
+}
+
+form {
+	width: 60%;
+}
+
+form p {
+	margin: .5em 0;
+}
+
+form p label {
+	float: left;
+	width: 30%;
+}
+
+table thead th,
+table tbody td {
+	padding: .3em .4em;
+}
