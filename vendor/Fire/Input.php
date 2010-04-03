@@ -230,5 +230,13 @@ class Fire_Input extends Fire_Object {
         
         return Fire_Sanitize::normalize($data, false);
     }
+    
+    function hasPost() {
+        return !empty($_POST) ? true : false;
+    }
+    
+    function hasGet() {
+        return !empty($_GET) ? true : false;
+    }
 }
 ?>

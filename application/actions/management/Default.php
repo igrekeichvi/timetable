@@ -32,6 +32,7 @@ class ManagementDefaultAction extends DefaultAction {
         parent::__construct();
 		$this->_session =& Fire_Session::instance();
         $this->_rq = Fire_Loader::helper('RawRequest', true);
+        $this->_lc->load('captions');
     }
 	
 	/**

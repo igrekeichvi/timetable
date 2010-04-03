@@ -1,3 +1,5 @@
+<h2>{$lc->get('caption_for_operators')}</h2>
+
 {if !empty($message_flash)}
 	<p>
 		{$message_flash}

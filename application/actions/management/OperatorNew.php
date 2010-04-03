@@ -18,8 +18,9 @@ class ManagementOperatorNewAction extends ManagementDefaultAction {
         }
         if ($this->_form->validate($this->_input->getPost(true))) {  
             $conditionsMatched = true;
+            reset($languages);
             while(list(,$language) = each($languages)) {
-                if (!$this->_operators->unique(spintf('name_%s', $language), $this->_form->getValue(sprintf('name_%s', $language)))) {
+                if (!$this->_operators->unique(sprintf('name_%s', $language), $this->_form->getValue(sprintf('name_%s', $language)))) {
                     $conditionsMatched = $conditionsMatched && false;
                     $this->_form->setError(sprintf('name_%s', $language), $this->_lc->get('caption_for_name_should_be_unique'));
                 }

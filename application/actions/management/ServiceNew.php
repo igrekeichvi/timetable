@@ -27,40 +27,42 @@ class ManagementServiceNewAction extends ManagementDefaultAction {
         $this->_form->register('code', new StringValidator(1, 10), true);
         $this->_form->register('operator', new EnumValidator(array_keys($operators)));
         
-        $conditionsMatched = true;
-        if (!$this->_form->validate($this->_input->getPost(true))) {
-            $conditionsMatched = $conditionsMatched && false;  
+        if ($this->_input->hasPost()) {
+	        $conditionsMatched = true;
+	        if (!$this->_form->validate($this->_input->getPost(true))) {
+	            $conditionsMatched = $conditionsMatched && false;  
+	        }
+	        
+	        if (!$this->_servicesModel->unique('name_bg', $this->_form->getValue('name_bg'))) {
+	            $this->_form->setError('name_bg', $this->_lc->get('caption_for_name_should_be_unique'));
+	            $conditionsMatched = $conditionsMatched && false;
+	        }
+	            
+	        if (!$this->_servicesModel->unique('name_en', $this->_form->getValue('name_en'))) {
+	            $this->_form->setError('name_en', $this->_lc->get('caption_for_name_should_be_unique'));
+	            $conditionsMatched = $conditionsMatched && false;
+	        }
+	            
+	        if (!$this->_servicesModel->unique('name_ru', $this->_form->getValue('name_ru'))) {
+	            $this->_form->setError('name_ru', $this->_lc->get('caption_for_name_should_be_unique'));
+	            $conditionsMatched = $conditionsMatched && false;
+	        }
+	            
+	        if (!$this->_servicesModel->unique('code', $this->_form->getValue('code'))) {
+	            $this->_form->setError('code', $this->_lc->get('caption_for_code_should_be_unique'));
+	            $conditionsMatched = $conditionsMatched && false;
+	        }
+	            
+	        if (!$this->_operatorsModel->find(sprintf('id = %d', $this->_form->getValue('operator')))) {
+	            $this->_form->setError('operator', $this->_lc->get('caption_for_select_operator'));
+	            $conditionsMatched = $conditionsMatched && false;
+	        }
+	            
+	        if ($conditionsMatched == true)
+	            return true;
         }
         
-        if (!$this->_servicesModel->unique('name_bg', $this->_form->getValue('name_bg'))) {
-            $this->_form->setError('name_bg', $this->_lc->get('caption_for_name_should_be_unique'));
-            $conditionsMatched = $conditionsMatched && false;
-        }
-            
-        if (!$this->_servicesModel->unique('name_en', $this->_form->getValue('name_en'))) {
-            $this->_form->setError('name_en', $this->_lc->get('caption_for_name_should_be_unique'));
-            $conditionsMatched = $conditionsMatched && false;
-        }
-            
-        if (!$this->_servicesModel->unique('name_ru', $this->_form->getValue('name_ru'))) {
-            $this->_form->setError('name_ru', $this->_lc->get('caption_for_name_should_be_unique'));
-            $conditionsMatched = $conditionsMatched && false;
-        }
-            
-        if (!$this->_servicesModel->unique('code', $this->_form->getValue('code'))) {
-            $this->_form->setError('code', $this->_lc->get('caption_for_code_should_be_unique'));
-            $conditionsMatched = $conditionsMatched && false;
-        }
-            
-        if (!$this->_operatorsModel->find(sprintf('id = %d', $this->_form->getValue('operator')))) {
-            $this->_form->setError('operator', $this->_lc->get('caption_for_select_operator'));
-            $conditionsMatched = $conditionsMatched && false;
-        }
-            
-        if ($conditionsMatched == true)
-            return true;
-        
-        $this->_view = new Fire_View('management/serviceadd', true, MANAGEMENT_TEMPLATE_BODY);
+        $this->_view = new Fire_View('management/services', true, MANAGEMENT_TEMPLATE_BODY);
         $this->_view->set('form', new Fire_Form_Helper($this->_form, $this->_lc));
         $this->_view->set('services', $this->_servicesModel->getServices(1, ITEMS_UNLIMITED));
         $this->_view->set('operators', $operators);

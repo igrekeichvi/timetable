@@ -44,4 +44,14 @@ $routes['m_services'] = $routes['m_service_add'] = array(
     'file'  => 'management/ServiceNew',
     'class' => 'ManagementServiceNew'
 );
+
+$routes['m_service_edit'] = array(
+    'file'	=> 'management/ServiceEdit',
+    'class' => 'ManagementServiceEdit'
+);
+
+$routes['m_service_delete'] = array(
+    'file' 	=> 'management/ServiceDelete',
+    'class' => 'ManagementServiceDelete'
+);
 ?>
