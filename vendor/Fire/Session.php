@@ -81,6 +81,7 @@ class Fire_Session extends Fire_Object {
      *
      */
     function write() {
+		$_SESSION = array();
 		while (list($key, $value) = each($this->vars)) {
         	$_SESSION[$key] = $value;
         }
@@ -107,6 +108,27 @@ class Fire_Session extends Fire_Object {
 			return $this->vars[$name];
 		
 		return null;
+	}
+	
+	function set($name, $value) {
+		$this->vars[$name] = $value;
+	}
+	
+	function present($name) {
+		return array_key_exists($name, $this->vars);
+	}
+	
+	function get($name) {
+		if ($this->present($name)) {
+			return $this->vars[$name];
+		}
+		return null;
+	}
+	
+	function remove($name) {
+		if ($this->present($name)) {
+			unset($this->vars[$name]);
+		}
 	}
 }
 ?>

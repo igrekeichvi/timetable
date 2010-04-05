@@ -39,7 +39,13 @@ class DefaultAction extends Fire_Action {
         $this->_view->set('router_action_parameter', $this->_config->get('router_action_parameter'));
         $markupHelper = Fire_Loader::helper('Markup', true);
         $this->_view->setAsRef('ml', $markupHelper);
-        $this->_view->set('message_flash', $this->_lc->get($this->_input->get('_message_flash')));
+        //$this->_view->set('message_flash', $this->_lc->get($this->_input->get('_message_flash')));
+		
+		if ($this->_session->present('message_flash')) {
+			$this->_view->set('message_flash', $this->_lc->get($this->_session->message_flash));
+			$this->_session->remove('message_flash');
+			$this->_session->write();
+		}
         
     }
     
@@ -57,5 +63,9 @@ class DefaultAction extends Fire_Action {
     function setRedirectRoute($redirectRoute) {
         $this->redirect_route = Fire_Sanitize::reverse($redirectRoute);
     }
+	
+	function setFlash($message) {
+		$this->_session->set('message_flash', $message);
+	}
 }
 ?>

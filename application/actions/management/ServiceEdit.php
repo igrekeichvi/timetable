@@ -17,13 +17,17 @@ class ManagementServiceEditAction extends ManagementDefaultAction {
         $operators = $this->_operatorsModel->generateList('id', 'name_bg');
         
         if (empty($operators)) {
-            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators', '_message_flash', 'caption_for_add_operators_first'));
+			$this->setFlash('caption_for_add_operators_first');
+            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators'));
+			return false;
         }
         
         $service = $this->_servicesModel->find(array(sprintf('id = %d', $this->_input->get('id', true))));
-        if (empty($service))
-            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_services', '_message_flash', 'caption_for_service_not_found'));
-        
+        if (empty($service)) {
+			$this->setFlash('caption_for_service_not_found');
+            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_services'));
+			return false;
+        }
         // map operator_id to operator
         $service[0]['operator'] = $service[0]['operator_id'];
             
@@ -103,7 +107,8 @@ class ManagementServiceEditAction extends ManagementDefaultAction {
         else
             $flash = 'caption_for_service_update_failed';    
         
-        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_services', '_message_flash', $flash));
+		$this->setFlash($flash);
+        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_services'));
     }
 }
 ?>

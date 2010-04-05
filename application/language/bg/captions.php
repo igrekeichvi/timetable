@@ -21,5 +21,7 @@ $captions['error_message_for_value_is_empty'] = 'Моля, изберете ст
 $captions['caption_for_code_should_be_unique'] = 'Кодът трябва да е уникален';
 $captions['caption_for_service_added'] = 'Услугата беше добавена';
 $captions['caption_for_service_updated'] = 'Услугата беше редактирана';
-$captions['caption_for_management_part_title'] = 'Администрация'; 
+$captions['caption_for_administration'] = $captions['caption_for_management_part_title'] = 'Администрация'; 
+$captions['caption_for_add_operators_first'] = 'Моля, въведете поне един оператор.';
+$captions['caption_for_list_empty'] = 'Няма добавени.';
 ?>

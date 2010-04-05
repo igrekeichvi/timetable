@@ -30,7 +30,10 @@ class ManagementOperatorDeleteAction extends ManagementDefaultAction {
             $flash = 'caption_for_operator_deleted';
         else
             $flash = 'caption_operator_not_deleted';
-        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators', '_message_flash', $flash));
+		
+		$this->setFlash($flash);
+        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators'));
+		return true;
     }
 }
 ?>

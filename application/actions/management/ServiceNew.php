@@ -17,7 +17,10 @@ class ManagementServiceNewAction extends ManagementDefaultAction {
         $operators = $this->_operatorsModel->generateList('id', 'name_bg');
         
         if (empty($operators)) {
-            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators', '_message_flash', 'caption_for_add_operators_first'));
+			$this->setFlash('caption_for_add_operators_first');
+            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators'));
+			$this->_session->write();
+			return false;
         }
         
         $this->_form = new Fire_Form();
@@ -90,7 +93,9 @@ class ManagementServiceNewAction extends ManagementDefaultAction {
         else
             $flash = 'caption_for_service_adding_failed';    
         
-        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_services', '_message_flash', $flash));
+		$this->setFlash($flash);
+        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_services'));
+		return true;
     }
 }
 ?>

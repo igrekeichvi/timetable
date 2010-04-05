@@ -15,7 +15,8 @@ class ManagementOperatorEditAction extends ManagementDefaultAction {
     function validate() {
         $condition = sprintf('id = %d', $this->_operator_id);
         if (!$operator = $this->_operators->find(array($condition))) {
-            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators', '_message_flash', 'caption_for_operator_not_found'));
+			$this->setFlash('caption_for_operator_not_found');
+            $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators'));
             return false;
         }
         
@@ -48,7 +49,7 @@ class ManagementOperatorEditAction extends ManagementDefaultAction {
     }
     
     function perform() {
-        $this->_operators->update(
+        $resut = $this->_operators->update(
             array(
                 'name_bg' => Fire_Sanitize::escapeStr($this->_form->getValue('name_bg')),
             	'name_en' => Fire_Sanitize::escapeStr($this->_form->getValue('name_en')),
@@ -56,6 +57,11 @@ class ManagementOperatorEditAction extends ManagementDefaultAction {
             ),
             array(sprintf('id = %d', Fire_Sanitize::escapeStr($this->_operator_id)))
         );
+		
+		if ($result)
+			$this->setFlash('caption_for_update_sucessfull');
+		else
+			$this->setFlash('caption_for_update_failed');
         
         $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators'));
     }

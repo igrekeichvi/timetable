@@ -50,7 +50,9 @@ class ManagementOperatorNewAction extends ManagementDefaultAction {
         else
             $flash = 'caption_for_insert_failed';
             
-        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators', '_message_flash', $flash));
+		$this->setFlash($flash);
+        $this->setRedirectRoute($this->_rq->href($this->_config->get('router_action_parameter'), 'm_operators'));
+		return true;
     }
 }
 ?>
